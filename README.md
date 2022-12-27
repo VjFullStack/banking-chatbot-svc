@@ -14,7 +14,7 @@ Before you can run the project, you will need to install the following dependenc
 ## Installation
 To install and run the project, follow these steps:
 
-+ Clone the repository: git clone https://github.com/your-username/banking-chatbot-svc.git
++ Clone the repository: git clone https://github.com/VjFullStack/banking-chatbot-svc-.git
 + Change into the project directory: cd banking-chatbot-svc
 + Install the dependencies: mvn install
 + Run the application: mvn spring-boot:run
