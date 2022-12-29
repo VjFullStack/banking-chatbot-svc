@@ -25,9 +25,10 @@ public class AccountCreationService {
      *
      * @param accountsBody The request body containing the data for the new account.
      */
-    public void createAccount(AccountsBody accountsBody) {
+    public String createAccount(AccountsBody accountsBody) {
         Account account = AccountCreationMapper.fromAccountsBody(accountsBody);
         // Save the account to the database using the AccountRepository
         accountRepository.save(account);
+        return String.valueOf(account.getId());
     }
 }

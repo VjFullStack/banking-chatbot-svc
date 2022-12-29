@@ -9,11 +9,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 import java.io.IOException;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-12-27T05:52:23.176Z[GMT]")
@@ -42,19 +40,27 @@ public class AccountsApiController implements AccountsApi {
      * @param body the request body containing the account information
      * @return a response with the created account and a success message, or an error status if something went wrong
      */
-    public ResponseEntity<InlineResponse201> createAccount(@Valid @RequestBody AccountsBody body) {
+//    public ResponseEntity<InlineResponse201> createAccount(@Valid @RequestBody AccountsBody body) {
+//        try {
+//            accountCreationService.createAccount(body);
+//            return ResponseEntity.status(HttpStatus.CREATED)
+//                    .body(objectMapper.readValue("{\n  \"message\" : \"success\",\n  \"account\" : {\n    \"open_date\" : \"2000-01-23\",\n    \"number\" : \"number\",\n    \"type\" : \"deposit\"\n  }\n}", InlineResponse201.class));
+//        } catch (IOException e) {
+//            log.error("Couldn't serialize response for content type application/json", e);
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+//        }
+//    }
+
+    @Override
+    public ResponseEntity<InlineResponse201> accountsPost(AccountsBody body) {
         try {
-            accountCreationService.createAccount(body);
+          String accountNumber=  accountCreationService.createAccount(body);
+          String accounttype = body.getAccountType().toString();
             return ResponseEntity.status(HttpStatus.CREATED)
-                    .body(objectMapper.readValue("{\n  \"message\" : \"success\",\n  \"account\" : {\n    \"open_date\" : \"2000-01-23\",\n    \"number\" : \"number\",\n    \"type\" : \"deposit\"\n  }\n}", InlineResponse201.class));
+                    .body(objectMapper.readValue("{\n  \"message\" : \"success\",\n  \"account\" : {\n    \"open_date\" : \"2000-01-23\",\n    \"number\" : " + accountNumber + ",\n    \"type\" : \"" +accounttype+ "\"\n  }\n}", InlineResponse201.class));
         } catch (IOException e) {
             log.error("Couldn't serialize response for content type application/json", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-    }
-
-    @Override
-    public ResponseEntity<InlineResponse201> accountsPost(AccountsBody body) {
-        return null;
     }
 }

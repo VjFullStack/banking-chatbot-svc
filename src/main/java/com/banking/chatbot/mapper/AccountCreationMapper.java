@@ -4,10 +4,13 @@ import com.banking.chatbot.entities.Account;
 import com.banking.chatbot.entities.Address;
 import com.banking.chatbot.entities.Identification;
 import com.banking.chatbot.model.AccountsBody;
+import com.banking.chatbot.utils.Utility;
 
 public class AccountCreationMapper {
     public static Account fromAccountsBody(AccountsBody accountsBody) {
         Account account = new Account();
+
+        account.setId(Utility.generateAccountNo());
         account.setName(accountsBody.getName());
         account.setContact(accountsBody.getContact());
         if (accountsBody.getCurrentAddress() != null) {
