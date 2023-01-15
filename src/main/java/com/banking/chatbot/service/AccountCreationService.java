@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 /**
  * Service class responsible for creating a new account in the database.
+ *
+ * @author Viraj Salokhe
  */
 @Service
 public class AccountCreationService {
@@ -24,6 +26,7 @@ public class AccountCreationService {
      * Creates a new account in the database using the data provided in the given {@link AccountsBody}.
      *
      * @param accountsBody The request body containing the data for the new account.
+     * @return The ID of the newly created account.
      */
     public String createAccount(AccountsBody accountsBody) {
         Account account = AccountCreationMapper.fromAccountsBody(accountsBody);
@@ -32,3 +35,4 @@ public class AccountCreationService {
         return String.valueOf(account.getId());
     }
 }
+

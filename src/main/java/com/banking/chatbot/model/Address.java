@@ -8,7 +8,9 @@ import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 /**
- * Address
+ * Model class representing an address.
+ *
+ * @author Viraj Salokhe
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-12-27T05:52:23.176Z[GMT]")

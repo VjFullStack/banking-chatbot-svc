@@ -1,3 +1,10 @@
+/**
+
+ AccountsIdentification is a model class that represents the identification information of a customer in a bank.
+ @author Viraj Salokhe
+ @version 1.0
+ @since 1.0
+ */
 package com.banking.chatbot.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;

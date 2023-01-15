@@ -2,10 +2,18 @@ package com.banking.chatbot.utils;
 
 import java.util.Random;
 
+/**
+ * Utility class with utility methods.
+ *
+ * @author Viraj Salokhe
+ */
 public class Utility {
-
-    public static Long generateAccountNo()
-    {
+    /**
+     * Generates a random 10-digit account number.
+     *
+     * @return The generated account number.
+     */
+    public static Long generateAccountNo() {
         Random random = new Random();
         int numDigits = 10;
         long min = (long) Math.pow(10, numDigits - 1);  // Minimum long number with 10 digits
@@ -13,3 +21,4 @@ public class Utility {
         return min + ((long) (random.nextDouble() * (max - min)));  // Generate a random long number between the minimum and maximum values
     }
 }
+

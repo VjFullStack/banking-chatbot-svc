@@ -1,3 +1,10 @@
+/**
+
+ AccountsBody is a model class that represents a customer's account information in a bank.
+ @author Viraj Salokhe
+ @version 1.0
+ @since 1.0
+ */
 package com.banking.chatbot.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
