@@ -1,53 +1,26 @@
 package com.banking.chatbot.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
 
 import java.util.Objects;
 
 /**
- * InlineResponse400
+ * InlineResponse2001
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-03-11T07:21:13.475411845Z[GMT]")
 
 
-public class InlineResponse400   {
-  /**
-   * Gets or Sets message
-   */
-  public enum MessageEnum {
-    ERROR("error");
-
-    private String value;
-
-    MessageEnum(String value) {
-      this.value = value;
-    }
-
-    @Override
-    @JsonValue
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static MessageEnum fromValue(String text) {
-      for (MessageEnum b : MessageEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
-          return b;
-        }
-      }
-      return null;
-    }
-  }
+public class InlineResponse2001   {
   @JsonProperty("message")
-  private MessageEnum message = null;
+  private String message = null;
 
-  public InlineResponse400 message(MessageEnum message) {
+  @JsonProperty("transaction_id")
+  private String transactionId = null;
+
+  public InlineResponse2001 message(String message) {
     this.message = message;
     return this;
   }
@@ -56,14 +29,33 @@ public class InlineResponse400   {
    * Get message
    * @return message
    **/
-  @Schema(description = "")
+  @Schema(example = "Funds transferred successfully", description = "")
   
-    public MessageEnum getMessage() {
+    public String getMessage() {
     return message;
   }
 
-  public void setMessage(MessageEnum message) {
+  public void setMessage(String message) {
     this.message = message;
+  }
+
+  public InlineResponse2001 transactionId(String transactionId) {
+    this.transactionId = transactionId;
+    return this;
+  }
+
+  /**
+   * Get transactionId
+   * @return transactionId
+   **/
+  @Schema(description = "")
+  
+    public String getTransactionId() {
+    return transactionId;
+  }
+
+  public void setTransactionId(String transactionId) {
+    this.transactionId = transactionId;
   }
 
 
@@ -75,21 +67,23 @@ public class InlineResponse400   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InlineResponse400 inlineResponse400 = (InlineResponse400) o;
-    return Objects.equals(this.message, inlineResponse400.message);
+    InlineResponse2001 inlineResponse2001 = (InlineResponse2001) o;
+    return Objects.equals(this.message, inlineResponse2001.message) &&
+        Objects.equals(this.transactionId, inlineResponse2001.transactionId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(message);
+    return Objects.hash(message, transactionId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class InlineResponse400 {\n");
+    sb.append("class InlineResponse2001 {\n");
     
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("    transactionId: ").append(toIndentedString(transactionId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -5,29 +5,30 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.validation.annotation.Validated;
-import org.threeten.bp.LocalDate;
+import org.threeten.bp.OffsetDateTime;
 
 import javax.validation.Valid;
 import java.util.Objects;
+import java.util.UUID;
 
 /**
- * InlineResponse201Account
+ * Transaction
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-03-11T07:21:13.475411845Z[GMT]")
 
 
-public class InlineResponse201Account   {
-  @JsonProperty("number")
-  private String number = null;
+public class Transaction   {
+  @JsonProperty("id")
+  private UUID id = null;
 
   /**
-   * Gets or Sets type
+   * Type of transaction
    */
   public enum TypeEnum {
-    DEPOSIT("deposit"),
+    CREDIT("credit"),
     
-    SAVINGS("savings");
+    DEBIT("debit");
 
     private String value;
 
@@ -54,38 +55,42 @@ public class InlineResponse201Account   {
   @JsonProperty("type")
   private TypeEnum type = null;
 
-  @JsonProperty("open_date")
-  private LocalDate openDate = null;
+  @JsonProperty("amount")
+  private Double amount = null;
 
-  public InlineResponse201Account number(String number) {
-    this.number = number;
+  @JsonProperty("date")
+  private OffsetDateTime date = null;
+
+  public Transaction id(UUID id) {
+    this.id = id;
     return this;
   }
 
   /**
-   * Get number
-   * @return number
+   * Transaction ID
+   * @return id
    **/
-  @Schema(description = "")
+  @Schema(description = "Transaction ID")
   
-    public String getNumber() {
-    return number;
+    @Valid
+    public UUID getId() {
+    return id;
   }
 
-  public void setNumber(String number) {
-    this.number = number;
+  public void setId(UUID id) {
+    this.id = id;
   }
 
-  public InlineResponse201Account type(TypeEnum type) {
+  public Transaction type(TypeEnum type) {
     this.type = type;
     return this;
   }
 
   /**
-   * Get type
+   * Type of transaction
    * @return type
    **/
-  @Schema(description = "")
+  @Schema(description = "Type of transaction")
   
     public TypeEnum getType() {
     return type;
@@ -95,24 +100,43 @@ public class InlineResponse201Account   {
     this.type = type;
   }
 
-  public InlineResponse201Account openDate(LocalDate openDate) {
-    this.openDate = openDate;
+  public Transaction amount(Double amount) {
+    this.amount = amount;
     return this;
   }
 
   /**
-   * Get openDate
-   * @return openDate
+   * Transaction amount
+   * @return amount
    **/
-  @Schema(description = "")
+  @Schema(description = "Transaction amount")
   
-    @Valid
-    public LocalDate getOpenDate() {
-    return openDate;
+    public Double getAmount() {
+    return amount;
   }
 
-  public void setOpenDate(LocalDate openDate) {
-    this.openDate = openDate;
+  public void setAmount(Double amount) {
+    this.amount = amount;
+  }
+
+  public Transaction date(OffsetDateTime date) {
+    this.date = date;
+    return this;
+  }
+
+  /**
+   * Transaction date and time
+   * @return date
+   **/
+  @Schema(description = "Transaction date and time")
+  
+    @Valid
+    public OffsetDateTime getDate() {
+    return date;
+  }
+
+  public void setDate(OffsetDateTime date) {
+    this.date = date;
   }
 
 
@@ -124,25 +148,27 @@ public class InlineResponse201Account   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InlineResponse201Account inlineResponse201Account = (InlineResponse201Account) o;
-    return Objects.equals(this.number, inlineResponse201Account.number) &&
-        Objects.equals(this.type, inlineResponse201Account.type) &&
-        Objects.equals(this.openDate, inlineResponse201Account.openDate);
+    Transaction transaction = (Transaction) o;
+    return Objects.equals(this.id, transaction.id) &&
+        Objects.equals(this.type, transaction.type) &&
+        Objects.equals(this.amount, transaction.amount) &&
+        Objects.equals(this.date, transaction.date);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(number, type, openDate);
+    return Objects.hash(id, type, amount, date);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class InlineResponse201Account {\n");
+    sb.append("class Transaction {\n");
     
-    sb.append("    number: ").append(toIndentedString(number)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    openDate: ").append(toIndentedString(openDate)).append("\n");
+    sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
+    sb.append("    date: ").append(toIndentedString(date)).append("\n");
     sb.append("}");
     return sb.toString();
   }

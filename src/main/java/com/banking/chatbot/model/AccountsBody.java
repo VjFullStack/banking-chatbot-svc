@@ -1,10 +1,3 @@
-/**
-
- AccountsBody is a model class that represents a customer's account information in a bank.
- @author Viraj Salokhe
- @version 1.0
- @since 1.0
- */
 package com.banking.chatbot.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -15,6 +8,7 @@ import org.springframework.validation.annotation.Validated;
 import org.threeten.bp.LocalDate;
 
 import javax.validation.Valid;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
@@ -22,7 +16,7 @@ import java.util.Objects;
  * AccountsBody
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-12-27T05:52:23.176Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-03-11T07:21:13.475411845Z[GMT]")
 
 
 public class AccountsBody   {
@@ -79,6 +73,9 @@ public class AccountsBody   {
 
   @JsonProperty("open_date")
   private LocalDate openDate = null;
+
+  @JsonProperty("balance")
+  private Double balance = null;
 
   public AccountsBody name(String name) {
     this.name = name;
@@ -241,9 +238,29 @@ public class AccountsBody   {
     this.openDate = openDate;
   }
 
+  public AccountsBody balance(Double balance) {
+    this.balance = balance;
+    return this;
+  }
+
+  /**
+   * Get balance
+   * minimum: 0
+   * @return balance
+   **/
+  @Schema(description = "")
+  
+  @DecimalMin("0")  public Double getBalance() {
+    return balance;
+  }
+
+  public void setBalance(Double balance) {
+    this.balance = balance;
+  }
+
 
   @Override
-  public boolean equals(java.lang.Object o) {
+  public boolean equals(Object o) {
     if (this == o) {
       return true;
     }
@@ -258,12 +275,13 @@ public class AccountsBody   {
         Objects.equals(this.accountType, accountsBody.accountType) &&
         Objects.equals(this.panNumber, accountsBody.panNumber) &&
         Objects.equals(this.identification, accountsBody.identification) &&
-        Objects.equals(this.openDate, accountsBody.openDate);
+        Objects.equals(this.openDate, accountsBody.openDate) &&
+        Objects.equals(this.balance, accountsBody.balance);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, contact, currentAddress, permanentAddress, accountType, panNumber, identification, openDate);
+    return Objects.hash(name, contact, currentAddress, permanentAddress, accountType, panNumber, identification, openDate, balance);
   }
 
   @Override
@@ -279,6 +297,7 @@ public class AccountsBody   {
     sb.append("    panNumber: ").append(toIndentedString(panNumber)).append("\n");
     sb.append("    identification: ").append(toIndentedString(identification)).append("\n");
     sb.append("    openDate: ").append(toIndentedString(openDate)).append("\n");
+    sb.append("    balance: ").append(toIndentedString(balance)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -287,7 +306,7 @@ public class AccountsBody   {
    * Convert the given object to string with each line indented by 4 spaces
    * (except the first line).
    */
-  private String toIndentedString(java.lang.Object o) {
+  private String toIndentedString(Object o) {
     if (o == null) {
       return "null";
     }

@@ -12,7 +12,7 @@ import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-12-27T05:52:23.176Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-03-11T07:21:13.475411845Z[GMT]")
 @Configuration
 public class SwaggerDocumentationConfig {
 
@@ -20,7 +20,7 @@ public class SwaggerDocumentationConfig {
     public Docket customImplementation(){
         return new Docket(DocumentationType.OAS_30)
                 .select()
-                    .apis(RequestHandlerSelectors.basePackage("com.banking.chatbot"))
+                    .apis(RequestHandlerSelectors.basePackage("io.swagger.api"))
                     .build()
                 .directModelSubstitute(org.threeten.bp.LocalDate.class, java.sql.Date.class)
                 .directModelSubstitute(org.threeten.bp.OffsetDateTime.class, java.util.Date.class)
@@ -34,7 +34,7 @@ public class SwaggerDocumentationConfig {
             .license("Apache 2.0")
             .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
             .termsOfServiceUrl("")
-            .version("1.0.0")
+            .version("1.0.2")
             .contact(new Contact("","", "viraj.salokhe@gmail.com"))
             .build();
     }
@@ -46,7 +46,7 @@ public class SwaggerDocumentationConfig {
                 .title("Banking API")
                 .description("This is a simple API for a banking application")
                 .termsOfService("")
-                .version("1.0.0")
+                .version("1.0.2")
                 .license(new License()
                     .name("Apache 2.0")
                     .url("http://www.apache.org/licenses/LICENSE-2.0.html"))

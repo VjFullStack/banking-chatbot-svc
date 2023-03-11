@@ -9,18 +9,20 @@ import org.springframework.validation.annotation.Validated;
 import java.util.Objects;
 
 /**
- * InlineResponse400
+ * InlineResponse4041
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-03-11T07:21:13.475411845Z[GMT]")
 
 
-public class InlineResponse400   {
+public class InlineResponse4041   {
   /**
    * Gets or Sets message
    */
   public enum MessageEnum {
-    ERROR("error");
+    ERROR("error"),
+    
+    TRANSACTION_NOT_FOUND("Transaction not found");
 
     private String value;
 
@@ -47,7 +49,7 @@ public class InlineResponse400   {
   @JsonProperty("message")
   private MessageEnum message = null;
 
-  public InlineResponse400 message(MessageEnum message) {
+  public InlineResponse4041 message(MessageEnum message) {
     this.message = message;
     return this;
   }
@@ -75,8 +77,8 @@ public class InlineResponse400   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InlineResponse400 inlineResponse400 = (InlineResponse400) o;
-    return Objects.equals(this.message, inlineResponse400.message);
+    InlineResponse4041 inlineResponse4041 = (InlineResponse4041) o;
+    return Objects.equals(this.message, inlineResponse4041.message);
   }
 
   @Override
@@ -87,7 +89,7 @@ public class InlineResponse400   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class InlineResponse400 {\n");
+    sb.append("class InlineResponse4041 {\n");
     
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("}");
