@@ -6,6 +6,7 @@ import com.banking.chatbot.model.AccountsBody;
 import com.banking.chatbot.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Service class responsible for creating a new account in the database.
@@ -28,6 +29,8 @@ public class AccountCreationService {
      * @param accountsBody The request body containing the data for the new account.
      * @return The ID of the newly created account.
      */
+
+    @Transactional
     public String createAccount(AccountsBody accountsBody) {
         Account account = AccountCreationMapper.fromAccountsBody(accountsBody);
         // Save the account to the database using the AccountRepository
