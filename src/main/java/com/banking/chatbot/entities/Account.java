@@ -3,6 +3,8 @@ package com.banking.chatbot.entities;
 import org.threeten.bp.LocalDate;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -35,6 +37,11 @@ public class Account {
     @Column(nullable = false)
     private LocalDate openDate;
 
+    @Column(nullable = false)
+    private BigDecimal balance;
+
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+    private List<Transaction> transactions;
     // getters and setters
 
     public Long getId() {
@@ -109,55 +116,55 @@ public class Account {
         this.openDate = openDate;
     }
 
+    public BigDecimal getBalance() {
+        return balance;
+    }
+
+    public void setBalance(BigDecimal balance) {
+        this.balance = balance;
+    }
+
+    public List<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
+    }
+
     // constructor
 
     public Account() {
 
     }
 
-    public Account(Long id, String name, String contact, Address currentAddress, String accountType, String panNumber, LocalDate openDate) {
+    public Account(Long id, String name, String contact, Address currentAddress, Address permanentAddress, String accountType, String panNumber, Identification identification, LocalDate openDate, BigDecimal balance, List<Transaction> transactions) {
         this.id = id;
         this.name = name;
         this.contact = contact;
         this.currentAddress = currentAddress;
+        this.permanentAddress = permanentAddress;
         this.accountType = accountType;
         this.panNumber = panNumber;
+        this.identification = identification;
         this.openDate = openDate;
+        this.balance = balance;
+        this.transactions = transactions;
     }
 
-
     // hashCode and equals methods
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Account account)) return false;
-
-        if (!id.equals(account.id)) return false;
-        if (!name.equals(account.name)) return false;
-        if (!contact.equals(account.contact)) return false;
-        if (!currentAddress.equals(account.currentAddress)) return false;
-        if (!Objects.equals(permanentAddress, account.permanentAddress))
-            return false;
-        if (!accountType.equals(account.accountType)) return false;
-        if (!panNumber.equals(account.panNumber)) return false;
-        if (!Objects.equals(identification, account.identification))
-            return false;
-        return openDate.equals(account.openDate);
+        return id.equals(account.id) && Objects.equals(name, account.name) && Objects.equals(contact, account.contact) && Objects.equals(currentAddress, account.currentAddress) && Objects.equals(permanentAddress, account.permanentAddress) && Objects.equals(accountType, account.accountType) && Objects.equals(panNumber, account.panNumber) && Objects.equals(identification, account.identification) && Objects.equals(openDate, account.openDate) && Objects.equals(balance, account.balance) && Objects.equals(transactions, account.transactions);
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + name.hashCode();
-        result = 31 * result + contact.hashCode();
-        result = 31 * result + currentAddress.hashCode();
-        result = 31 * result + (permanentAddress != null ? permanentAddress.hashCode() : 0);
-        result = 31 * result + accountType.hashCode();
-        result = 31 * result + panNumber.hashCode();
-        result = 31 * result + (identification != null ? identification.hashCode() : 0);
-        result = 31 * result + openDate.hashCode();
-        return result;
+        return Objects.hash(id, name, contact, currentAddress, permanentAddress, accountType, panNumber, identification, openDate, balance, transactions);
     }
 }
 

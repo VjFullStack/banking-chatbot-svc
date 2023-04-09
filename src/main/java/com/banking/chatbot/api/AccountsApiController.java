@@ -1,7 +1,9 @@
 package com.banking.chatbot.api;
 
 import com.banking.chatbot.model.AccountsBody;
+import com.banking.chatbot.model.InlineResponse200;
 import com.banking.chatbot.model.InlineResponse201;
+import com.banking.chatbot.model.Transaction;
 import com.banking.chatbot.service.AccountCreationService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
@@ -10,9 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
+import org.threeten.bp.LocalDate;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.List;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2022-12-27T05:52:23.176Z[GMT]")
 @RestController
@@ -62,5 +66,20 @@ public class AccountsApiController implements AccountsApi {
             log.error("Couldn't serialize response for content type application/json", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+    }
+
+    @Override
+    public ResponseEntity<InlineResponse200> accountsAccountNumberBalanceGet(String accountNumber) {
+        return null;
+    }
+
+    @Override
+    public ResponseEntity<List<Transaction>> accountsAccountNumberTransactionsGet(String accountNumber, LocalDate startDate, LocalDate endDate, Integer limit) {
+        return null;
+    }
+
+    @Override
+    public ResponseEntity<Transaction> accountsAccountNumberTransactionsTransactionIdGet(String accountNumber, String transactionId) {
+        return null;
     }
 }

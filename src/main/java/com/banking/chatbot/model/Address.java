@@ -11,7 +11,7 @@ import java.util.Objects;
  * Address
  */
 @Validated
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-03-11T07:21:13.475411845Z[GMT]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2023-04-07T12:04:10.431528963Z[GMT]")
 
 
 public class Address   {
