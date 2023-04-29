@@ -4,6 +4,9 @@ import com.banking.chatbot.model.AccountsBody;
 import com.banking.chatbot.model.InlineResponse200;
 import com.banking.chatbot.model.InlineResponse201;
 import com.banking.chatbot.model.Transaction;
+//import com.banking.chatbot.service.AccountBalanceService;
+//import com.banking.chatbot.service.AccountCreationService;
+import com.banking.chatbot.service.AccountBalanceService;
 import com.banking.chatbot.service.AccountCreationService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
@@ -31,6 +34,9 @@ public class AccountsApiController implements AccountsApi {
     @Autowired
     private AccountCreationService accountCreationService;
 
+    @Autowired
+    private AccountBalanceService accountBalanceService;
+
     @org.springframework.beans.factory.annotation.Autowired
     public AccountsApiController(ObjectMapper objectMapper, HttpServletRequest request) {
         this.objectMapper = objectMapper;
@@ -44,16 +50,7 @@ public class AccountsApiController implements AccountsApi {
      * @param body the request body containing the account information
      * @return a response with the created account and a success message, or an error status if something went wrong
      */
-//    public ResponseEntity<InlineResponse201> createAccount(@Valid @RequestBody AccountsBody body) {
-//        try {
-//            accountCreationService.createAccount(body);
-//            return ResponseEntity.status(HttpStatus.CREATED)
-//                    .body(objectMapper.readValue("{\n  \"message\" : \"success\",\n  \"account\" : {\n    \"open_date\" : \"2000-01-23\",\n    \"number\" : \"number\",\n    \"type\" : \"deposit\"\n  }\n}", InlineResponse201.class));
-//        } catch (IOException e) {
-//            log.error("Couldn't serialize response for content type application/json", e);
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-//        }
-//    }
+
 
     @Override
     public ResponseEntity<InlineResponse201> accountsPost(AccountsBody body) {
@@ -70,7 +67,18 @@ public class AccountsApiController implements AccountsApi {
 
     @Override
     public ResponseEntity<InlineResponse200> accountsAccountNumberBalanceGet(String accountNumber) {
-        return null;
+        try {
+            String balance = accountBalanceService.getAccountBalance(accountNumber);
+
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(objectMapper.readValue("{\n  \"message\" : \"success\",\n  \"balance\" : " + balance + "\n}", InlineResponse200.class));
+        } catch (IOException e) {
+            log.error("Couldn't serialize response for content type application/json", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        } catch (NotFoundException e) {
+            log.error("Account not found", e);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 
     @Override

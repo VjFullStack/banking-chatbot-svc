@@ -1,8 +1,12 @@
 package com.banking.chatbot.repository;
 
+
 import com.banking.chatbot.entities.Account;
+import com.banking.chatbot.entities.Address;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
 
 /**
  * Repository interface for accessing and manipulating account data in the database.
@@ -12,7 +16,8 @@ import org.springframework.stereotype.Repository;
  * @author Viraj Salokhe
  */
 @Repository
-public interface AccountRepository extends JpaRepository<Account, Long> {
+public interface AccountRepository extends JpaRepository<Account, String> {
+
 }
 
 
