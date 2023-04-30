@@ -23,12 +23,15 @@ spring:
         ddl-auto: create
 
   datasource:
-    url: jdbc:h2:mem:testdb
+    url: jdbc:h2:mem:bankingdb
     driver-class-name: org.h2.Driver
     username: sa
     password:
+  h2:
+    console:
+      enabled: true
 
 logging:
   level:
     root: info
-  file: logs/application.log
+

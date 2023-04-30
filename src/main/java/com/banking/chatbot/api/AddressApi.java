@@ -26,7 +26,7 @@ public interface AddressApi {
     @RequestMapping(value = "/accounts/{accountNumber}/address",
             produces = { "application/json" },
             method = RequestMethod.GET)
-    ResponseEntity<Address> getAddress(
+    ResponseEntity<String> getAddress(
             @Parameter(in = ParameterIn.PATH, description = "The account number for which to retrieve the address", required=true, schema=@Schema()) @PathVariable("accountNumber") String accountNumber
     );
 }
